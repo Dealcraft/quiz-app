@@ -40,6 +40,7 @@ export default defineComponent({
 
 .quiz-card {
 	max-width: $quiz-card-max-width;
+	width: $quiz-card-max-width;
 	min-height: $quiz-card-min-height;
 	display: flex;
 	flex-direction: column;
