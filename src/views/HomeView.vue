@@ -23,6 +23,10 @@ export default defineComponent({
 			this.$router.push({ name: "QuizOverview", params: { id: id } });
 		},
 	},
+
+	created() {
+		document.title = "Home - QuizApp";
+	},
 });
 </script>
 

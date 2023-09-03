@@ -1,9 +1,12 @@
 <template>
 	<div class="quiz">
-		<div>
+		<div class="sidebar">
 			<div class="mb-3">
-				<h1 class="mb-1">{{ quiz.name }}</h1>
-				<h4 class="subtitle">Insgesamt {{ quiz.questions.length }} Frage(n)</h4>
+				<h1>{{ quiz.name }}</h1>
+				<h4 class="subtitle mb-1">
+					Insgesamt {{ quiz.questions.length }} Frage(n)
+				</h4>
+				<p v-if="quiz && quiz.description">{{ quiz.description }}</p>
 			</div>
 			<div>
 				<button-base class="mb-1" variant="green" @click="startQuiz"
@@ -46,6 +49,7 @@ export default defineComponent({
 			const result = this.$store.state.quiz.find(quiz => quiz.id === this.id);
 			if (!result) return this.$router.push({ name: "Home" });
 			this.quiz = result;
+			document.title = `${this.quiz.name} - QuizApp`;
 		},
 
 		goBack() {
@@ -79,5 +83,9 @@ export default defineComponent({
 
 .questions {
 	flex-grow: 1;
+}
+
+.sidebar {
+	max-width: 300px;
 }
 </style>

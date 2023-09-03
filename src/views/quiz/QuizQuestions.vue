@@ -51,6 +51,7 @@ export default defineComponent({
 			const result = this.$store.state.quiz.find(quiz => quiz.id === this.id);
 			if (!result) return this.$router.push({ name: "Home" });
 			this.quiz = result;
+			document.title = `Frage 1 von ${this.quiz.questions.length} - ${this.quiz.name} - ${this.quiz.name}`;
 
 			for (let i = 0; i < this.quiz.questions.length; i++) {
 				this.answerCollection.push(this.quiz.questions[i].answer);
@@ -114,8 +115,11 @@ export default defineComponent({
 
 			if (this.currentQuestionIndex !== this.questions.length - 1)
 				this.waitTimeout = setTimeout(() => {
-					this.currentQuestionIndex++;
+					this.currentQuestionIndex = this.currentQuestionIndex + 1;
 					this.generateAnswers();
+					document.title = `Frage ${this.currentQuestionIndex + 1} von ${
+						this.quiz.questions.length
+					} - ${this.quiz.name} - ${this.quiz.name}`;
 				}, this.$store.state.options.waitTime);
 		},
 	},
