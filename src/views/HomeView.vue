@@ -4,6 +4,7 @@
 			v-for="quiz of $store.state.quiz"
 			:quiz-id="quiz.id"
 			:key="quiz.id"
+			@click="openQuiz(quiz.id)"
 		/>
 		<add-quiz-card />
 	</div>
@@ -17,6 +18,11 @@ import AddQuizCard from "@/components/AddQuizCard.vue";
 export default defineComponent({
 	name: "HomeView",
 	components: { AddQuizCard, QuizCard },
+	methods: {
+		openQuiz(id: string) {
+			this.$router.push({ name: "QuizOverview", params: { id: id } });
+		},
+	},
 });
 </script>
 

@@ -1,11 +1,17 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import HomeView from "../views/HomeView.vue";
+import QuizOverview from "@/views/quiz/QuizOverview.vue";
 
 const routes: Array<RouteRecordRaw> = [
 	{
 		path: "/",
-		name: "home",
+		name: "Home",
 		component: HomeView,
+	},
+	{
+		path: "/quiz/:id",
+		name: "QuizOverview",
+		component: QuizOverview,
 	},
 ];
 
