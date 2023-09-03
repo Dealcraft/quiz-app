@@ -11,4 +11,27 @@
       background: $card-hover-background;
     }
   }
+
+  @each $name, $color in $color-pallet {
+    &.card-#{$name} {
+      background: $color;
+      border-color: darken($color, $button-hover-darken * 2);
+
+      &:hover {
+        background: darken($color, $button-hover-darken);
+      }
+    }
+
+    &.card-outline-#{$name} {
+      background: transparent;
+      color: $button-text-light;
+      border-color: $color;
+
+      &:hover {
+        background: $color;
+        color: $button-text-color;
+        border-color: darken($color, $button-hover-darken * 2);
+      }
+    }
+  }
 }

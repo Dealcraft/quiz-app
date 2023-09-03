@@ -1,5 +1,5 @@
 <template>
-	<div class="card" :class="hover ? 'card:hover-able' : ''">
+	<div class="card" :class="classList">
 		<slot name="default" />
 	</div>
 </template>
@@ -12,6 +12,20 @@ export default defineComponent({
 	props: {
 		hover: {
 			type: Boolean,
+		},
+		variant: {
+			type: String,
+		},
+	},
+
+	computed: {
+		classList() {
+			let result = "";
+
+			if (this.hover) result += "card:hover-able ";
+			if (this.variant) result += `card-${this.variant} `;
+
+			return result;
 		},
 	},
 });

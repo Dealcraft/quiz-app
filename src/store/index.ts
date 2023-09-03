@@ -43,6 +43,10 @@ export default createStore<State>({
 				],
 			},
 		],
+		options: {
+			maxIterations: 10,
+			waitTime: 2000,
+		},
 	},
 	getters: {},
 	mutations: {},
