@@ -1,0 +1,14 @@
+.card {
+  padding: $card-padding;
+  border-radius: $card-border-radius;
+  border: $card-border;
+
+  &\:hover-able {
+    transition: $card-transition;
+    cursor: pointer;
+
+    &:hover {
+      background: $card-hover-background;
+    }
+  }
+}

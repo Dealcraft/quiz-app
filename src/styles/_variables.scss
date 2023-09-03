@@ -1,4 +1,19 @@
-$font-family: Helvetica, Arial, sans-serif !default;
-$font-color: hsl(219, 20%, 91%);
+$border-radius: 5px !default;
+$border-color: hsl(219, 20%, 40%) !default;
+$border: 2px solid $border-color !default;
 
-$background-color: hsl(219, 50%, 15%);
+$font-family: Helvetica, Arial, sans-serif !default;
+$font-color: hsl(219, 20%, 91%) !default;
+
+$background-color: hsl(219, 50%, 15%) !default;
+
+$transition-property: background !default;
+$transition-duration: 300ms !default;
+$transition-timing: ease-in-out !default;
+$transition: $transition-property $transition-duration $transition-timing !default;
+
+$card-padding: 5px !default;
+$card-border-radius: $border-radius !default;
+$card-border: $border !default;
+$card-hover-background: hsl(219, 20%, 30%) !default;
+$card-transition: $transition !default;
