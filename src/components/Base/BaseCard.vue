@@ -1,6 +1,6 @@
 <template>
 	<div class="card" :class="hover ? 'card:hover-able' : ''">
-		<h3>Hallo Welt</h3>
+		<slot name="default" />
 	</div>
 </template>
 
