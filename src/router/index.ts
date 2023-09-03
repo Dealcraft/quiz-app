@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import QuizOverview from "@/views/quiz/QuizOverview.vue";
+import QuizQuestions from "@/views/quiz/QuizQuestions.vue";
 
 const routes: Array<RouteRecordRaw> = [
 	{
@@ -12,6 +13,11 @@ const routes: Array<RouteRecordRaw> = [
 		path: "/quiz/:id",
 		name: "QuizOverview",
 		component: QuizOverview,
+	},
+	{
+		path: "/quiz/:id/run",
+		name: "QuizQuestions",
+		component: QuizQuestions,
 	},
 ];
 

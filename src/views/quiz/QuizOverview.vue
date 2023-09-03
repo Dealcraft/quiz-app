@@ -6,8 +6,12 @@
 				<h4 class="subtitle">Insgesamt {{ quiz.questions.length }} Frage(n)</h4>
 			</div>
 			<div>
-				<button-base class="mb-1" variant="green">Quiz starten</button-base>
-				<button-base variant="outline-green">Zurück</button-base>
+				<button-base class="mb-1" variant="green" @click="startQuiz"
+					>Quiz starten</button-base
+				>
+				<button-base variant="outline-green" @click="goBack">
+					Zurück
+				</button-base>
 			</div>
 		</div>
 		<div class="questions">
@@ -42,6 +46,14 @@ export default defineComponent({
 			const result = this.$store.state.quiz.find(quiz => quiz.id === this.id);
 			if (!result) return this.$router.push({ name: "Home" });
 			this.quiz = result;
+		},
+
+		goBack() {
+			this.$router.go(-1);
+		},
+
+		startQuiz() {
+			this.$router.push({ name: "QuizQuestions", params: { id: this.id } });
 		},
 	},
 
