@@ -19,3 +19,65 @@ body {
 .font-bold {
   font-weight: bold;
 }
+
+@each $value in (1, 2, 3) {
+  .m-#{$value} {
+    margin: $margin-base * $value;
+  }
+
+  .mt-#{$value} {
+    margin-top: $margin-base * $value;
+  }
+
+  .mr-#{$value} {
+    margin-right: $margin-base * $value;
+  }
+
+  .mb-#{$value} {
+    margin-bottom: $margin-base * $value;
+  }
+
+  .ml-#{$value} {
+    margin-left: $margin-base * $value;
+  }
+
+  .mx-#{$value} {
+    margin-left: $margin-base * $value;
+    margin-right: $margin-base * $value;
+  }
+
+  .my-#{$value} {
+    margin-top: $margin-base * $value;
+    margin-bottom: $margin-base * $value;
+  }
+
+  .p-#{$value} {
+    padding: $padding-base * $value;
+  }
+
+  .pt-#{$value} {
+    padding-top: $padding-base * $value;
+  }
+
+  .pr-#{$value} {
+    padding-right: $padding-base * $value;
+  }
+
+  .pb-#{$value} {
+    padding-bottom: $padding-base * $value;
+  }
+
+  .pl-#{$value} {
+    padding-left: $padding-base * $value;
+  }
+
+  .px-#{$value} {
+    padding-left: $padding-base * $value;
+    padding-right: $padding-base * $value;
+  }
+
+  .py-#{$value} {
+    padding-top: $padding-base * $value;
+    padding-bottom: $padding-base * $value;
+  }
+}

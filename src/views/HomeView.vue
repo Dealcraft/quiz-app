@@ -30,7 +30,6 @@ export default defineComponent({
 @import "../styles/variables";
 
 .home {
-	margin: $margin-base * 2;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;

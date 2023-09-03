@@ -1,0 +1,42 @@
+@import "variables";
+
+.btn {
+  appearance: none;
+  padding: $button-padding;
+  border-radius: $button-border-radius;
+  border: $button-border;
+  border-color: transparent;
+  color: $button-text-color;
+  font-size: 1rem;
+  cursor: pointer;
+  background: $button-default-background;
+  transition: $transition;
+  width: 100%;
+
+  &:hover {
+    background: darken($button-default-background, $button-hover-darken);
+  }
+
+  @each $name, $color in $color-pallet {
+    &.btn-#{$name} {
+      background: $color;
+      border-color: darken($color, $button-hover-darken * 2);
+
+      &:hover {
+        background: darken($color, $button-hover-darken);
+      }
+    }
+
+    &.btn-outline-#{$name} {
+      background: transparent;
+      color: $button-text-light;
+      border-color: $color;
+
+      &:hover {
+        background: $color;
+        color: $button-text-color;
+        border-color: darken($color, $button-hover-darken * 2);
+      }
+    }
+  }
+}

@@ -1,10 +1,23 @@
 <template>
 	<div class="quiz">
-		<question-preview
-			v-for="question of quiz.questions"
-			:key="question.id + '-' + question.answer"
-			:question="question"
-		/>
+		<div>
+			<div class="mb-3">
+				<h1 class="mb-1">{{ quiz.name }}</h1>
+				<h4 class="subtitle">Insgesamt {{ quiz.questions.length }} Frage(n)</h4>
+			</div>
+			<div>
+				<button-base class="mb-1" variant="green">Quiz starten</button-base>
+				<button-base variant="outline-green">Zurück</button-base>
+			</div>
+		</div>
+		<div class="questions">
+			<question-preview
+				class="mb-1"
+				v-for="question of quiz.questions"
+				:key="question.id + '-' + question.answer"
+				:question="question"
+			/>
+		</div>
 	</div>
 </template>
 
@@ -12,10 +25,11 @@
 import { defineComponent } from "vue";
 import QuestionPreview from "@/components/QuestionPreview.vue";
 import { Quiz } from "@/types/quiz.type";
+import ButtonBase from "@/components/Base/ButtonBase.vue";
 
 export default defineComponent({
 	name: "QuizOverview",
-	components: { QuestionPreview },
+	components: { ButtonBase, QuestionPreview },
 	data() {
 		return {
 			id: this.$route.params.id,
@@ -46,7 +60,12 @@ export default defineComponent({
 <style scoped lang="scss">
 @import "../../styles/variables";
 
-.question-preview {
-	margin-bottom: $margin-base * 2;
+.quiz {
+	display: flex;
+	gap: $flex-gap-base * 3;
+}
+
+.questions {
+	flex-grow: 1;
 }
 </style>
