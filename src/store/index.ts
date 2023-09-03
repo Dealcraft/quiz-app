@@ -17,8 +17,28 @@ export default createStore<State>({
 				questions: [
 					{
 						id: NIL,
-						question: "What is the ICAO phonetic for A",
+						question: "What is the ICAO phonetic for A?",
 						answer: "Alpha",
+					},
+					{
+						id: NIL,
+						question: "What is the ICAO phonetic for B?",
+						answer: "Beta",
+					},
+					{
+						id: NIL,
+						question: "What is the ICAO phonetic for C?",
+						answer: "Charlie",
+					},
+					{
+						id: NIL,
+						question: "What is the ICAO phonetic for D?",
+						answer: "Delta",
+					},
+					{
+						id: NIL,
+						question: "What is the ICAO phonetic for E?",
+						answer: "Echo",
 					},
 				],
 			},
