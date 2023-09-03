@@ -25,12 +25,24 @@ export default defineComponent({
 		};
 	},
 
+	methods: {
+		getQuiz() {
+			const result = this.$store.state.quiz.find(
+				(quiz: Quiz) => quiz.id === this.quizId
+			);
+			if (!result) return;
+			this.quiz = result;
+		},
+	},
+
+	watch: {
+		quizId() {
+			this.getQuiz();
+		},
+	},
+
 	created() {
-		const result = this.$store.state.quiz.find(
-			(quiz: Quiz) => quiz.id === this.quizId
-		);
-		if (!result) return;
-		this.quiz = result;
+		this.getQuiz();
 	},
 });
 </script>
