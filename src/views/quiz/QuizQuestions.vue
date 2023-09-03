@@ -150,6 +150,10 @@ export default defineComponent({
 .card {
 	width: 200px;
 	height: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 2rem;
 }
 
 .grid-layout {
