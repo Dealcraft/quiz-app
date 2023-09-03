@@ -1,16 +1,14 @@
 import { createStore } from "vuex";
 import VuexPersistence from "vuex-persist";
 import { NIL } from "uuid";
-import { Quiz } from "@/types/quiz.type";
+import { State } from "@/store/state";
 
 const vuexLocal = new VuexPersistence({
 	storage: window.localStorage,
 	key: "quiz-app",
 });
 
-export default createStore<{
-	quiz: Quiz[];
-}>({
+export default createStore<State>({
 	state: {
 		quiz: [
 			{
