@@ -6,5 +6,9 @@ module.exports = defineConfig({
 		name: "Quiz App",
 		shortName: "Quiz App",
 		themeColor: "#132139FF",
+		workboxPluginMode: "InjectManifest",
+		workboxOptions: {
+			swSrc: "./service-worker.js",
+		},
 	},
 });
