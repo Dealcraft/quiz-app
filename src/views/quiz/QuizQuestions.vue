@@ -56,13 +56,12 @@ export default defineComponent({
 			for (let i = 0; i < this.quiz.questions.length; i++) {
 				this.answerCollection.push(this.quiz.questions[i].answer);
 				this.questions.push(this.quiz.questions[i]);
-				if (!this.quiz.questions[i].question.endsWith("?"))
-					this.quiz.questions[i].question =
-						this.quiz.questions[i].question + "?";
+				if (!this.questions[i].question.endsWith("?"))
+					this.questions[i].question = this.questions[i].question + "?";
 				this.correctAnswers.push(false);
 			}
 
-			this.questions = this.shuffleArray<Question>(this.quiz.questions);
+			this.questions = this.shuffleArray<Question>(this.questions);
 			this.generateAnswers();
 		},
 
@@ -117,7 +116,7 @@ export default defineComponent({
 					this.currentQuestionIndex = this.currentQuestionIndex + 1;
 					this.generateAnswers();
 					document.title = `Frage ${this.currentQuestionIndex + 1} von ${
-						this.quiz.questions.length
+						this.questions.length
 					} - ${this.quiz.name} - ${this.quiz.name}`;
 				}, this.$store.state.options.waitTime);
 		},
