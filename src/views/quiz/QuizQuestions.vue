@@ -104,7 +104,6 @@ export default defineComponent({
 		},
 
 		selectAnswer(i: number) {
-			console.log("Selected", i);
 			if (
 				this.currentAnswers[i] ===
 				this.questions[this.currentQuestionIndex].answer
