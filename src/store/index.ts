@@ -278,6 +278,23 @@ export default createStore<State>({
 					},
 				],
 			},
+			{
+				id: uuidV4(),
+				name: "ICAO Zahlen",
+				description: "Lerne die ICAO Zahlen und sprich wie ein Pilot.",
+				questions: [
+					{
+						id: uuidV4(),
+						question: 'Was ist die ICAO Aussprache für "0"',
+						answer: "Zero",
+					},
+					{
+						id: uuidV4(),
+						question: 'Was ist die ICAO Aussprache für "3"',
+						answer: "Tree",
+					},
+				],
+			},
 		],
 		options: {
 			maxIterations: 10,
@@ -292,8 +309,15 @@ export default createStore<State>({
 			const wait = state.options.waitTime;
 			state.options.waitTime = wait > 0 ? wait : 2000;
 		},
+		DELETE_QUIZ(state: State, payload: string) {
+			state.quiz = state.quiz.filter(quiz => quiz.id !== payload);
+		},
 	},
-	actions: {},
+	actions: {
+		deleteQuiz(ctx, payload: string) {
+			ctx.commit("DELETE_QUIZ", payload);
+		},
+	},
 	modules: {},
 	plugins: [vuexLocal.plugin],
 });

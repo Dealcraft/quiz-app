@@ -1,6 +1,6 @@
 <template>
 	<Transition>
-		<div class="modal-container" :class="classList" v-if="show">
+		<div class="modal-container" :class="classList" v-if="show" role="dialog">
 			<div class="modal-backdrop" @click="close" />
 			<div class="modal">
 				<div class="modal-header" v-if="showHeader">
@@ -18,10 +18,10 @@
 				</div>
 				<div class="modal-footer" v-if="showFooter">
 					<slot name="footer">
-						<button-base :variant="abortVariant" @click="close">
+						<button-base :variant="abortVariant" @click="abort">
 							{{ abortText }}
 						</button-base>
-						<button-base :variant="okVariant" @click="close">
+						<button-base :variant="okVariant" @click="confirm">
 							{{ okText }}
 						</button-base>
 					</slot>
@@ -68,10 +68,10 @@ export default defineComponent({
 		},
 		modelValue: {
 			type: Boolean,
-			default: true,
+			default: false,
 		},
 	},
-	emits: ["update:modelValue"],
+	emits: ["update:modelValue", "abort", "confirm"],
 
 	data() {
 		return {
@@ -82,6 +82,16 @@ export default defineComponent({
 	methods: {
 		close() {
 			this.value = false;
+		},
+
+		abort() {
+			this.$emit("abort");
+			this.close();
+		},
+
+		confirm() {
+			this.$emit("confirm");
+			this.close();
 		},
 	},
 

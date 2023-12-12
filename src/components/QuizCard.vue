@@ -29,6 +29,7 @@ export default defineComponent({
 			required: true,
 		},
 	},
+	emits: ["delete:quizId"],
 	data() {
 		return {
 			quiz: {} as Quiz,
@@ -46,7 +47,7 @@ export default defineComponent({
 
 		deleteQuiz(event: Event) {
 			event.stopPropagation();
-			console.log("delete quiz");
+			this.$emit("delete:quizId", { id: this.quizId, name: this.quiz.name });
 		},
 	},
 

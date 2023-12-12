@@ -5,8 +5,21 @@
 			:quiz-id="quiz.id"
 			:key="quiz.id"
 			@click="openQuiz(quiz.id)"
+			@delete:quizId="deleteQuizRequest"
 		/>
 		<add-quiz-card />
+		<base-modal
+			title="Quiz löschen?"
+			v-model="showDeleteModal"
+			@confirm="deleteQuiz"
+			ok-text="Löschen"
+			ok-variant="outline-red"
+			abort-variant="outline-grey"
+		>
+			<p>
+				Soll das Quiz <b>{{ deletingQuiz.name }}</b> gelöscht werden?
+			</p>
+		</base-modal>
 	</div>
 </template>
 
@@ -14,13 +27,32 @@
 import { defineComponent } from "vue";
 import QuizCard from "@/components/QuizCard.vue";
 import AddQuizCard from "@/components/AddQuizCard.vue";
+import BaseModal from "@/components/Base/BaseModal.vue";
+import { Quiz } from "@/types/quiz.type";
 
 export default defineComponent({
 	name: "HomeView",
-	components: { AddQuizCard, QuizCard },
+	components: { BaseModal, AddQuizCard, QuizCard },
+
+	data() {
+		return {
+			showDeleteModal: false,
+			deletingQuiz: {} as Pick<Quiz, "id" | "name">,
+		};
+	},
+
 	methods: {
 		openQuiz(id: string) {
 			this.$router.push({ name: "QuizOverview", params: { id: id } });
+		},
+
+		deleteQuizRequest(payload: Pick<Quiz, "id" | "name">) {
+			this.showDeleteModal = true;
+			this.deletingQuiz = payload;
+		},
+
+		deleteQuiz() {
+			void this.$store.dispatch("deleteQuiz", this.deletingQuiz.id);
 		},
 	},
 
