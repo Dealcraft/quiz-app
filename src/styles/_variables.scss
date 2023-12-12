@@ -11,7 +11,8 @@ $subtitle-weight: normal !default;
 $background-color: hsl(219, 50%, 15%) !default;
 $color-pallet: (
   "green": hsl(94, 50%, 59%),
-  "red": hsl(5, 50%, 59%)
+  "red": hsl(5, 50%, 59%),
+  "grey": hsl(219, 20%, 70%),
 ) !default;
 
 $flex-gap-base: 5px !default;
@@ -19,10 +20,19 @@ $grid-gap-base: 10px !default;
 $margin-base: 10px !default;
 $padding-base: 10px !default;
 
-$transition-property: background, opacity !default;
+$transition-property: (
+  background,
+  color,
+  opacity,
+  background-color
+) !default;
 $transition-duration: 300ms !default;
 $transition-timing: ease-in-out !default;
-$transition: $transition-property $transition-duration $transition-timing !default;
+$transition: null !default;
+@for $i from 1 through length($transition-property) {
+  $transition: $transition + " " + nth($transition-property, $i) + " " + $transition-duration + " " + $transition-timing + ", ";
+}
+$transition: unquote($transition);
 
 $card-padding: 5px !default;
 $card-border-radius: $border-radius !default;
@@ -44,3 +54,12 @@ $quiz-card-min-height: 200px !default;
 
 $question-preview-min-height: 45px !default;
 $question-preview-padding: 10px !default;
+
+$modal-padding: $padding-base !default;
+$modal-section-padding: 1.5*$padding-base !default;
+$modal-border-radius: $border-radius !default;
+$modal-border: $border !default;
+$modal-border-color: darken($border-color, 15%) !default;
+$modal-background: $background-color !default;
+$modal-min-width: 400px !default;
+$modal-max-width: 500px !default;

@@ -1,9 +1,9 @@
 import { createStore } from "vuex";
 import VuexPersistence from "vuex-persist";
 import { v4 as uuidV4 } from "uuid";
-import { State } from "@/store/state";
+import { State } from "@/types/state.type";
 
-const vuexLocal = new VuexPersistence({
+const vuexLocal = new VuexPersistence<State>({
 	storage: window.localStorage,
 	key: "quiz-app",
 });
@@ -285,7 +285,14 @@ export default createStore<State>({
 		},
 	},
 	getters: {},
-	mutations: {},
+	mutations: {
+		INIT_STORE(state: State) {
+			const max = state.options.maxIterations;
+			state.options.maxIterations = max > 0 ? max : 10;
+			const wait = state.options.waitTime;
+			state.options.waitTime = wait > 0 ? wait : 2000;
+		},
+	},
 	actions: {},
 	modules: {},
 	plugins: [vuexLocal.plugin],

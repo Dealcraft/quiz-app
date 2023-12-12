@@ -1,9 +1,9 @@
 import { Quiz } from "@/types/quiz.type";
 
-export interface State {
+export type State = {
 	quiz: Quiz[];
 	options: {
 		maxIterations: number;
 		waitTime: number;
 	};
-}
+};
