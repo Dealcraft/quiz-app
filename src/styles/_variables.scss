@@ -19,7 +19,7 @@ $grid-gap-base: 10px !default;
 $margin-base: 10px !default;
 $padding-base: 10px !default;
 
-$transition-property: background !default;
+$transition-property: background, opacity !default;
 $transition-duration: 300ms !default;
 $transition-timing: ease-in-out !default;
 $transition: $transition-property $transition-duration $transition-timing !default;
