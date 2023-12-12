@@ -3,6 +3,7 @@ import VuexPersistence from "vuex-persist";
 import { v4 as uuidV4 } from "uuid";
 import { State } from "@/types/state.type";
 import { Quiz } from "@/types/quiz.type";
+import { Question } from "@/types/question.type";
 
 const vuexLocal = new VuexPersistence<State>({
 	storage: window.localStorage,
@@ -313,14 +314,64 @@ export default createStore<State>({
 		CREATE_QUIZ(state: State, payload: Quiz) {
 			state.quiz.push(payload);
 		},
+		CREATE_QUESTION(
+			state: State,
+			payload: {
+				quizId: string;
+				question: Question;
+			}
+		) {
+			console.log(payload);
+			const quizIndex = state.quiz.findIndex(
+				quiz => quiz.id === payload.quizId
+			);
+			if (quizIndex < 0) return;
+
+			const questions = state.quiz[quizIndex].questions;
+			questions.unshift(payload.question);
+
+			state.quiz[quizIndex].questions = questions;
+		},
+
+		UPDATE_QUESTION(
+			state: State,
+			payload: {
+				quizId: string;
+				question: Question;
+			}
+		) {
+			const quizIndex = state.quiz.findIndex(
+				quiz => quiz.id === payload.quizId
+			);
+			if (quizIndex < 0) return;
+
+			const questionIndex = state.quiz[quizIndex].questions.findIndex(
+				question => question.id === payload.question.id
+			);
+			if (questionIndex < 0) return;
+
+			state.quiz[quizIndex].questions[questionIndex] = payload.question;
+		},
+
 		DELETE_QUIZ(state: State, payload: string) {
 			state.quiz = state.quiz.filter(quiz => quiz.id !== payload);
 		},
+
+		DELETE_QUESTION(
+			state: State,
+			payload: { quizId: string; questionId: string }
+		) {
+			const quizIndex = state.quiz.findIndex(
+				(quiz: Quiz) => quiz.id === payload.quizId
+			);
+			if (quizIndex < 0) return;
+
+			state.quiz[quizIndex].questions = state.quiz[quizIndex].questions.filter(
+				(question: Question) => question.id !== payload.questionId
+			);
+		},
 	},
 	actions: {
-		deleteQuiz(ctx, payload: string) {
-			ctx.commit("DELETE_QUIZ", payload);
-		},
 		createQuiz(ctx, payload: Pick<Quiz, "name" | "description">) {
 			const id = uuidV4();
 			const quiz: Quiz = {
@@ -333,6 +384,47 @@ export default createStore<State>({
 			ctx.commit("CREATE_QUIZ", quiz);
 
 			return id;
+		},
+
+		createQuestion(
+			ctx,
+			payload: {
+				quizId: string;
+				question: Pick<Question, "question" | "answer">;
+			}
+		) {
+			if (payload.question.question === "" || payload.question.answer === "")
+				return;
+
+			const quiz = ctx.state.quiz.find(quiz => quiz.id === payload.quizId);
+			if (!quiz) return;
+
+			ctx.commit("CREATE_QUESTION", {
+				quizId: quiz.id,
+				question: {
+					id: uuidV4(),
+					question: payload.question.question,
+					answer: payload.question.answer,
+				},
+			});
+		},
+
+		updateQuestion(ctx, payload: { quizId: string; question: Question }) {
+			const quiz = ctx.state.quiz.find(quiz => quiz.id === payload.quizId);
+			if (!quiz) return;
+
+			ctx.commit("UPDATE_QUESTION", {
+				quizId: quiz.id,
+				question: payload.question,
+			});
+		},
+
+		deleteQuiz(ctx, payload: string) {
+			ctx.commit("DELETE_QUIZ", payload);
+		},
+
+		deleteQuestion(ctx, payload: { quizId: string; questionId: string }) {
+			ctx.commit("DELETE_QUESTION", payload);
 		},
 	},
 	modules: {},

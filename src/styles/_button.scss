@@ -13,6 +13,10 @@
   transition: $transition;
   width: 100%;
 
+  * {
+    color: $button-text-color;
+  }
+
   &:hover {
     background: darken($button-default-background, $button-hover-darken);
   }

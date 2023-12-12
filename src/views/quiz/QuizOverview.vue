@@ -12,9 +12,12 @@
 				<button-base class="mb-1" variant="green" @click="startQuiz"
 					>Quiz starten</button-base
 				>
-				<button-base variant="outline-green" @click="goBack">
+				<button-base class="mb-1" variant="outline-green" @click="goBack">
 					Zurück
 				</button-base>
+				<button-base variant="outline-grey" @click="edit"
+					>Quiz bearbeiten</button-base
+				>
 			</div>
 		</div>
 		<div class="questions">
@@ -46,7 +49,9 @@ export default defineComponent({
 
 	methods: {
 		getQuiz() {
-			const result = this.$store.state.quiz.find(quiz => quiz.id === this.id);
+			const result = this.$store.state.quiz.find(
+				(quiz: Quiz) => quiz.id === this.id
+			);
 			if (!result) return this.$router.push({ name: "Home" });
 			this.quiz = result;
 			document.title = `${this.quiz.name} - QuizApp`;
@@ -58,6 +63,10 @@ export default defineComponent({
 
 		startQuiz() {
 			this.$router.push({ name: "QuizQuestions", params: { id: this.id } });
+		},
+
+		edit() {
+			this.$router.push({ name: "QuizEdit", params: { id: this.id } });
 		},
 	},
 
@@ -86,6 +95,6 @@ export default defineComponent({
 }
 
 .sidebar {
-	max-width: 300px;
+	width: 300px;
 }
 </style>

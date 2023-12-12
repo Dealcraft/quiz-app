@@ -24,6 +24,10 @@ body {
   font-weight: bold;
 }
 
+.flex {
+  display: flex;
+}
+
 @each $value in (1, 2, 3) {
   .m-#{$value} {
     margin: $margin-base * $value;
@@ -83,5 +87,9 @@ body {
   .py-#{$value} {
     padding-top: $padding-base * $value;
     padding-bottom: $padding-base * $value;
+  }
+
+  .gap-#{$value} {
+    gap: $flex-gap-base * $value;
   }
 }

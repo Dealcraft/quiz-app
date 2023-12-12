@@ -19,7 +19,6 @@ export default defineComponent({
 
 	methods: {
 		submitted(event: Event) {
-			console.log("Hallo");
 			this.$emit("submitted", event);
 		},
 	},

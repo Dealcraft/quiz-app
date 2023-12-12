@@ -27,13 +27,13 @@
       font-size: $input-font-size;
     }
 
+    &:invalid {
+      border-color: map-get($color-pallet, "red");
+    }
+
     &:focus, &:focus-visible {
       outline: none;
       border-color: map-get($color-pallet, "blue");
-    }
-
-    &:invalid {
-      border-color: map-get($color-pallet, "red");
     }
   }
 }
