@@ -48,7 +48,9 @@ export default defineComponent({
 
 	methods: {
 		getQuiz() {
-			const result = this.$store.state.quiz.find(quiz => quiz.id === this.id);
+			const result = this.$store.state.quiz.find(
+				(quiz: Quiz) => quiz.id === this.id
+			);
 			if (!result) return this.$router.push({ name: "Home" });
 			this.quiz = result;
 			document.title = `Frage 1 von ${this.quiz.questions.length} - ${this.quiz.name} - ${this.quiz.name}`;
