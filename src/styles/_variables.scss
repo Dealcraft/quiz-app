@@ -10,9 +10,10 @@ $subtitle-weight: normal !default;
 
 $background-color: hsl(219, 50%, 15%) !default;
 $color-pallet: (
-  "green": hsl(94, 50%, 59%),
-  "red": hsl(5, 50%, 59%),
-  "grey": hsl(219, 20%, 70%),
+        "green": hsl(94, 50%, 59%),
+        "red": hsl(5, 50%, 59%),
+        "blue": hsl(219, 50%, 59%),
+        "grey": hsl(219, 20%, 70%),
 ) !default;
 
 $flex-gap-base: 5px !default;
@@ -63,3 +64,14 @@ $modal-border-color: darken($border-color, 15%) !default;
 $modal-background: $background-color !default;
 $modal-min-width: 400px !default;
 $modal-max-width: 500px !default;
+
+$input-flex-gap: 1.5*$flex-gap-base !default;
+$input-label-flex-basis: 100px !default;
+$input-label-color: $font-color !default;
+$input-padding: $padding-base !default;
+$input-border-radius: $border-radius !default;
+$input-border: $border !default;
+$input-background: $background-color !default;
+$input-placeholder-color: $subtitle-color !default;
+$input-font-size: 0.8rem !default;
+$input-font-color: $font-color !default;

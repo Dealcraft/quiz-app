@@ -1,0 +1,39 @@
+.form-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $input-flex-gap;
+  width: 100%;
+
+  label {
+    flex-basis: $input-label-flex-basis;
+    font-weight: $subtitle-weight;
+    color: $input-label-color;
+    text-align: right;
+  }
+
+  input {
+    appearance: none;
+    flex-grow: 1;
+    padding: $input-padding;
+    border-radius: $input-border-radius;
+    border: $input-border;
+    background: $input-background;
+    font-size: $input-font-size;
+    color: $input-font-color;
+
+    &::placeholder {
+      color: $input-placeholder-color;
+      font-size: $input-font-size;
+    }
+
+    &:focus, &:focus-visible {
+      outline: none;
+      border-color: map-get($color-pallet, "blue");
+    }
+
+    &:invalid {
+      border-color: map-get($color-pallet, "red");
+    }
+  }
+}

@@ -2,6 +2,7 @@ import { createStore } from "vuex";
 import VuexPersistence from "vuex-persist";
 import { v4 as uuidV4 } from "uuid";
 import { State } from "@/types/state.type";
+import { Quiz } from "@/types/quiz.type";
 
 const vuexLocal = new VuexPersistence<State>({
 	storage: window.localStorage,
@@ -309,6 +310,9 @@ export default createStore<State>({
 			const wait = state.options.waitTime;
 			state.options.waitTime = wait > 0 ? wait : 2000;
 		},
+		CREATE_QUIZ(state: State, payload: Quiz) {
+			state.quiz.push(payload);
+		},
 		DELETE_QUIZ(state: State, payload: string) {
 			state.quiz = state.quiz.filter(quiz => quiz.id !== payload);
 		},
@@ -316,6 +320,19 @@ export default createStore<State>({
 	actions: {
 		deleteQuiz(ctx, payload: string) {
 			ctx.commit("DELETE_QUIZ", payload);
+		},
+		createQuiz(ctx, payload: Pick<Quiz, "name" | "description">) {
+			const id = uuidV4();
+			const quiz: Quiz = {
+				id: id,
+				name: payload.name,
+				questions: [],
+				shortDescription: payload.description,
+				description: payload.description,
+			};
+			ctx.commit("CREATE_QUIZ", quiz);
+
+			return id;
 		},
 	},
 	modules: {},
